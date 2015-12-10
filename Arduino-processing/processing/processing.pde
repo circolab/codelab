@@ -5,7 +5,11 @@ String serial;   // declare a new string called 'serial' . A string is a sequenc
 Serial port;  // The serial port, this is a new instance of the Serial class (an Object)
 
 void setup() {
-  port = new Serial(this, Serial.list()[0], 9600); // initializing the object by assigning a port and baud rate (must match that of Arduino)
+  
+  // Print a list of the serial ports, for debugging purposes:
+  printArray(Serial.list());
+  
+  port = new Serial(this, Serial.list()[32], 9600); // initializing the object by assigning a port and baud rate (must match that of Arduino)
   port.clear();  // function from serial library that throws out the first reading, in case we started reading in the middle of a string from Arduino
   serial = port.readStringUntil(end); // function that reads the string from serial port until a println and then assigns string to our string variable (called 'serial')
   serial = null; // initially, the string will be null (empty)
